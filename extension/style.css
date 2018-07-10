@@ -16,3 +16,7 @@
 .btn-group button:hover {
     background-color: #3e8e41;
 }
+
+body{
+    min-width: 200px;
+}
