@@ -1,6 +1,6 @@
 .btn-group button {
-    background-color: #4CAF50; /* Green background */
-    border: 1px solid green; /* Green border */
+    background-color: rgb(33, 11, 230); /* Green background */
+    border: 1px solid rgb(16, 180, 180); /* Green border */
     color: white; /* White text */
     padding: 10px 24px; /* Some padding */
     cursor: pointer; /* Pointer/hand icon */
@@ -14,7 +14,7 @@
 
 /* Add a background color on hover */
 .btn-group button:hover {
-    background-color: #3e8e41;
+    background-color: #40af44;
 }
 
 body{
