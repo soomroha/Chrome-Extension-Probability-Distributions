@@ -3,7 +3,7 @@
 <html>
 
 	<head>
-		<title> Hello World! </title>
+		<title> Binomial Distribution </title>
 		<link rel="stylesheet" type="text/css" href="binomial.css"> 
 	</head>	
 
@@ -12,55 +12,63 @@
 
         <div style="text-align: center;">
             <label class="parameters">n = </label>
-            <input class="parameters" type="text" />
+            <input id="trials_input" class="parameters" type="text" />
         </div>
         <div style="margin-top:20px;text-align: center;">
             <label class="parameters">p = </label>
-            <input class="parameters" type="text" />
+            <input id="success_input" class="parameters" type="text" />
         </div>
 
         <div style="margin-top:20px;">
             <label style="width:40px;">P( X = </label>
-            <input type="text" class="bounds"/>
+            <input id="equal_input" type="text" class="bounds"/>
             <label> ) = </label>
-            <label>0.2234</label>
+            <label id="equal_label">0.2234</label>
         </div>
 
         <div style="margin-top:20px;">
             <label style="width:40px;">P( X <</label>
-            <input type="text" class="bounds"/>
+            <input id="less_input" type="text" class="bounds"/>
             <label> ) = </label>
-            <label>0.2234</label>
+            <label id="less_label">0.2234</label>
         </div>
 
         <div style="margin-top:20px;">
             <label style="width:40px;">P( X ></label>
-            <input type="text" class="bounds"/>
+            <input id="greater_input" type="text" class="bounds"/>
             <label> ) = </label>
-            <label>0.2234</label>
+            <label id="greater_label">0.2234</label>
         </div>
 
         <div style="margin-top:20px;">
             <label style="width:45px;">P( X <=</label>
-            <input type="text" class="bounds"/>
+            <input id="less_equal_input" type="text" class="bounds"/>
             <label> ) = </label>
-            <label>0.2234</label>
+            <label id="less_equal_label">0.2234</label>
         </div>
 
         <div style="margin-top:20px;">
             <label style="width:45px;">P( X >=</label>
-            <input type="text" class="bounds"/>
+            <input id="greater_equal_input" type="text" class="bounds"/>
             <label> ) = </label>
-            <label>0.2234</label>
+            <label id="greater_equal_label">0.2234</label>
         </div>
 
         <div style="margin-top:20px;">
             <label style="width:20px;">P( </label>
-            <input type="text" class="bounds"/>
+            <input id="double_bound_left_input" type="text" class="bounds"/>
             <label style="width:50px;"> <= X <= </label>
-            <input type="text" class="bounds"/>
+            <input id="double_bound_right_input" type="text" class="bounds"/>
             <label style="width:25px;"> ) = </label>
-            <label>0.2234</label>
+            <label id="double_bound_label">0.2234</label>
+        </div>
+
+        <div style="margin-top:20px;">
+            <label id="expected_value_label" style="width:30px;">E(X) = 3000</label>
+        </div>
+
+        <div style="margin-top:20px;">
+            <label id="variance_label" style="width:30px;">V(X) = 4000</label>
         </div>
 
         <div class="bottom_button">
@@ -68,6 +76,8 @@
             <button class="calculate_button">Calculate</button>    
         </div>
         
-	<body>
+    <body>
+
+    <script src="binomial.js"></script>
 
 </html>
