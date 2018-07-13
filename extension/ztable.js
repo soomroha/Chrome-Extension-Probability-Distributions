@@ -35,34 +35,56 @@ document.getElementById('calculate').onclick = function () {
                     [0.9993, 0.9994, 0.9994, 0.9994, 0.9994, 0.9994, 0.9994, 0.9995, 0.9995, 0.9995],
                     [0.9995, 0.9995, 0.9995, 0.9996, 0.9996, 0.9996, 0.9996, 0.9996, 0.9996, 0.9997],
                     [0.9997, 0.9997, 0.9997, 0.9997, 0.9997, 0.9997, 0.9997, 0.9997, 0.9997, 0.9998]]
+  
   var z_input = fetch_and_clean_data();
 
 
   if (z_input[0] == -1){
-    alert("Please enter valid z values ( 0 <= Z <= 3.49");
+    alert("Please enter valid z values (0 <= Z <= 3.49)");
     return;
   }
   else{
 
-    var value = 0;
+    var location = getProbability(z_input);
+    var row = location[0];
+    var column = location[1];
 
-    if (z_input[1] == 1){
-      value = parseInt(z_input);
-    }
-    else{
-      value = parseFloat(z_input);
-    }
-
-    value = value * 100;
-
-    var column = parseInt(value.toString()[2]);
-    var row = parseInt(value.toString()[0] + value.toString()[1]);
-
-    document.getElementById("z_answer").innerHTML = probabilites[row][column].toString();
+    document.getElementById("leftProbability").innerHTML = probabilites[row][column].toString();
+    document.getElementById("rightProbability").innerHTML = (1-probabilites[row][column]).toFixed(4).toString();
 
   }
 
 }
+
+function getProbability(z_input){
+
+  var value = 0;
+  var column;
+  var row;
+
+  if (z_input[1] == 1){
+    value = parseInt(z_input);
+
+    column = 0;
+    row = 10 * parseInt(value.toString()[0]);
+  }
+  else{
+    value = z_input[0];
+
+    if (value.length == 3){
+      column = 0;
+      row = parseInt(value.toString()[0] + value.toString()[2]);
+    }
+    else{
+      column = parseInt(value.toString()[3])
+      row = parseInt(value.toString()[0] + value.toString()[2]);
+    }
+
+  }
+
+  return [row, column];
+}
+
 
 function fetch_and_clean_data(){
 
@@ -77,7 +99,6 @@ function fetch_and_clean_data(){
 
       return [-1];
 }
-
 
 
 function isFloat(value){

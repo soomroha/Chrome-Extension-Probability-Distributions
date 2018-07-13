@@ -1,0 +1,47 @@
+label.parameters {
+    display: inline-block;
+    width: 20px;
+    text-align: left;
+  }
+
+input.parameters {
+    width: 55px;
+    border-top: none;
+    border-left: none;
+    border-right: none;
+    border-bottom-color: black;
+    border-bottom-style: solid;
+    text-align: center;
+}
+
+input.bounds {
+    width: 60px;
+    border-top: none;
+    border-left: none;
+    border-right: none;
+    border-bottom-color: black;
+    border-bottom-style: solid;
+    text-align: center;
+}
+
+body {
+    min-width: 230px;
+}
+
+button.calculate_button{
+
+    background-color: white; 
+    color: black; 
+    border: 2px solid #008CBA;
+}
+
+button.calculate_button:hover {
+    background-color: #008CBA;
+    color: white;
+}
+
+.bottom_button{
+
+    margin-top:20px; 
+    text-align:center;
+}
