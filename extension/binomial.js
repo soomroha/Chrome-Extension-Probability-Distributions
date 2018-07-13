@@ -1,5 +1,3 @@
-//var cdf = require("gsl-cdf");
-
 document.getElementById('calculate').onclick = function () {
 
   var ids = ["trials_input", "success_input", "equal_input", "less_input", "greater_input", "less_equal_input", "greater_equal_input", "double_bound_left_input", "double_bound_right_input"];
@@ -10,36 +8,47 @@ document.getElementById('calculate').onclick = function () {
     return;
   }
   else{
+    var n = parseInt(document.getElementById('trials_input').value);
+    var p = parseFloat(document.getElementById('success_input').value);
+    document.getElementById('expected_value_label').innerHTML = "E(X) = " + (n*p).toFixed(4)
+    document.getElementById('variance_label').innerHTML = "V(X) = " + (n*p*(1 - p)).toFixed(4)
     for (var x=0; x<used_ids.length; x++){
-      update_answers(used_ids[x]);
+      update_answers(used_ids[x], n , p);
     }
   }
 
 }
 
-function update_answers(id){
+function update_answers(id, n, p){
 
-  alert(id);
   var answer_id = id.concat("_answer");
 
   switch(id){
     case "equal_input":
-      var n = parseInt(document.getElementById('trials_input').value);
-      var p = parseFloat(document.getElementById('success_input').value);
-      var a = parseInt(document.getElementById('equal_input').value);
+      var y = parseInt(document.getElementById('equal_input').value);
+      document.getElementById(answer_id).innerHTML = equal_probability(y, n, p).toFixed(7);
       break;
     
     case "less_input":
+      var y = parseInt(document.getElementById('less_input').value);
+      document.getElementById(answer_id).innerHTML = less(y, n, p);
       break;
     case "greater_input":
+      var y = parseInt(document.getElementById('greater_input').value);
+      document.getElementById(answer_id).innerHTML = greater(y, n, p);
       break;
     case "less_equal_input":
+      var y = parseInt(document.getElementById('less_equal_input').value);
+      document.getElementById(answer_id).innerHTML = less_equal(y, n, p);
       break;
     case "greater_equal_input":
+      var y = parseInt(document.getElementById('greater_equal_input').value);
+      document.getElementById(answer_id).innerHTML = greater_equal(y, n, p);
       break;
     case "double_bound_left_input":
-      break;
-    case "double_bound_right_input":
+      var left = parseInt(document.getElementById('double_bound_left_input').value)
+      var right = parseInt(document.getElementById('double_bound_right_input').value)
+      document.getElementById(answer_id).innerHTML = double_bound(left, right, n, p);
       break;
     default:
       break;
@@ -71,8 +80,10 @@ function fetch_and_clean_data(ids){
     else if(current_id == "success_input"){
       
       var value = (document.getElementById(current_id).value);
+      check1 = isFloat(value) && parseFloat(value) >= 0.0 && parseFloat(value) <= 1.0;
+      check2 = isInteger(value) && ((parseInt(value) == 0) || (parseInt(value) == 1));
 
-      if(isFloat(value) && parseFloat(value) >= 0.0 && parseFloat(value) <= 1.0){
+      if(check1 || check2){
         used_ids.push(current_id);
       }
       else{
@@ -112,7 +123,7 @@ function fetch_and_clean_data(ids){
 
       }
       else{
-        alert("Bounds must be 0 <= bound <= n");
+        alert("Bounds must be integers and 0 <= bound <= n");
         return [];
       }
 
@@ -125,18 +136,55 @@ function fetch_and_clean_data(ids){
 
 
 
-function isFloat(value){
-
-    if (!isNaN(value) && value.toString().indexOf('.') != -1)
-    {
-      return true;
-    }
-    else{
-      return false;
-    }
+function equal_probability(y, n, p){
+  comb = factorial(n) / ((factorial(y)) * factorial(n - y))
+  probability = comb * Math.pow(p, y) * Math.pow(1-p, n-y)
+  return probability
 }
-  
-function isInteger(value){
 
-    return (!(isNaN(value)) && (value.toString().indexOf('.') == -1));
+function binomial_cdf(y, n, p){
+
+  sum_prob = 0.0
+  for(var i = 0; i <= y; i++){
+    sum_prob += equal_probability(i, n , p)
+  }
+
+  return sum_prob.toFixed(7)
+}
+
+function binomial_cdf_comp(y , n , p){
+  return (1 - binomial_cdf(y, n , p))
+}
+
+function greater_equal(y, n, p){
+
+  if(y == 0){
+    prob_at_zero = equal_probability(0, n, p)
+    return (prob_at_zero + (1 - binomial_cdf(0, n, p))).toFixed(7)
+  }
+
+  high_eq = binomial_cdf_comp(y-1, n, p)
+  return high_eq.toFixed(7)
+}
+
+function less_equal(y, n ,p){
+  return parseFloat(binomial_cdf(y, n, p)).toFixed(7)
+}
+
+function greater(y, n, p){
+  high = binomial_cdf_comp(y, n, p)
+  return high.toFixed(7)
+}
+
+function less(y, n, p){
+
+  return (1 - greater_equal(y, n, p)).toFixed(7)
+}
+
+function double_bound(a , b, n, p){
+  prob = 0.0
+  for(var i = a; i <= b; i++){
+    prob += equal_probability(i, n, p)
+  }
+  return prob.toFixed(7)
 }

@@ -11,6 +11,7 @@ input.parameters {
     border-right: none;
     border-bottom-color: black;
     border-bottom-style: solid;
+    text-align: center;
 }
 
 input.bounds {
@@ -20,6 +21,7 @@ input.bounds {
     border-right: none;
     border-bottom-color: black;
     border-bottom-style: solid;
+    text-align: center;
 }
 
 body {
