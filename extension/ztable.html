@@ -4,15 +4,28 @@
 
 	<head>
 		<title> Hello World! </title>
-		<link rel="stylesheet" type="text/css" href="popup.css"> 
+		<link rel="stylesheet" type="text/css" href="ztable.css"> 
 	</head>	
 
 	<body>
-		<h3 align="center"> ztable test </h3>
+		<h3 align="center"> Z-Table Lookup </h3>
 
+		<div style="text-align: center;">
+            <label class="z_value">Z = </label>
+            <input id="z_input" class="z_value" type="number" step="0.01" />
+        </div>
+
+        <div>
+        	<label style="width:25px;">Probability = </label>
+        	<label id="z_answer">0.2234</label>
+        </div>
+
+        <div class="bottom_button">
+            <button id="calculate" class="calculate_button">Calculate</button>    
+        </div>
 		
 	<body>
 
-	<script src="popup.js"></script>
+	<script src="ztable.js"></script>
 
 </html>
