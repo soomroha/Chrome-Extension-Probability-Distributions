@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+
+<html>
+
+	<head>
+		<title> Normal Distribution </title>
+		<link rel="stylesheet" type="text/css" href="binomial.css"> 
+	</head>	
+
+	<body>
+        <h4 align="center"> Normal Distribution </h4>
+
+        <div style="text-align: center;">
+            <label id="mean_label" class="parameters"></label>
+            <input id="mean_input" class="parameters" type="text" />
+        </div>
+        <div style="margin-top:20px;text-align: center;">
+            <label id = "sd_label" class="parameters"></label>
+            <input id="sd_input" class="parameters" type="text" />
+        </div>
+
+        <hr>
+
+        <div style="margin-top:20px; text-align: center;">
+            <label style="width:45px;">P( X <=</label>
+            <input id="less_equal_input" type="text" class="bounds"/>
+            <label> ) = </label>
+            <label id="less_equal_input_answer"></label>
+        </div>
+
+        <div style="margin-top:20px; text-align: center;">
+            <label style="width:45px;">P( X >=</label>
+            <input id="greater_equal_input" type="text" class="bounds"/>
+            <label> ) = </label>
+            <label id="greater_equal_input_answer"></label>
+        </div>
+
+        <div style="margin-top:20px; text-align: center;">
+            <label style="width:20px;">P( </label>
+            <input id="double_bound_left_input" type="text" class="bounds"/>
+            <label style="width:50px;"> <= X <= </label>
+            <input id="double_bound_right_input" type="text" class="bounds"/>
+            <label style="width:25px;"> ) = </label>
+            <label id="double_bound_left_input_answer"></label>
+        </div>
+
+        <hr>
+
+        <div style="margin-top:20px; text-align: center;">
+            <label id="expected_value_label" style="width:30px;">E(X)</label>
+        </div>
+
+        <div style="margin-top:20px; text-align: center;">
+            <label id="variance_label" style="width:30px;">V(X)</label>
+        </div>
+
+        <div class="bottom_button">
+
+            <button id="calculate" class="calculate_button">Calculate</button>    
+        </div>
+        
+    <body>
+
+    <script src="normal.js"></script>
+    <script src="bignumber.js"></script>
+    <script src="helpers.js"></script>
+
+</html>

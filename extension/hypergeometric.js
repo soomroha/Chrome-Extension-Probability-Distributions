@@ -185,7 +185,7 @@ document.getElementById('calculate').onclick = function () {
   
   
   
-  function equal_probability(y,N, r, n){
+  function equal_probability(y, N, r, n){
   
     if(!((0 <= y) && (y <= r))){
       return 0

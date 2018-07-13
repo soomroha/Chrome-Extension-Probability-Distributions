@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+
+<html>
+
+	<head>
+		<title> Negative Binomial Distribution </title>
+		<link rel="stylesheet" type="text/css" href="binomial.css"> 
+	</head>	
+
+	<body>
+        <h4 align="center"> Negative Binomial Distribution </h4>
+
+        <div style="text-align: center;">
+            <label class="parameters" style="width: fit-content">r (successes) = </label>
+            <input id="r_input" class="parameters" type="text" />
+        </div>
+        <div style="margin-top:20px;text-align: center;">
+            <label class="parameters">p = </label>
+            <input id="p_input" class="parameters" type="text" />
+        </div>
+
+        <hr>
+
+        <div style="margin-top:20px; text-align: center;">
+            <label style="width:40px;">P( X = </label>
+            <input id="equal_input" type="text" class="bounds"/>
+            <label> ) = </label>
+            <label id="equal_input_answer"></label>
+        </div>
+
+        <hr>
+
+        <div style="margin-top:20px; text-align: center;">
+            <label id="expected_value_label" style="width:30px;">E(X)</label>
+        </div>
+
+        <div style="margin-top:20px; text-align: center;">
+            <label id="variance_label" style="width:30px;">V(X)</label>
+        </div>
+
+        <div class="bottom_button">
+
+            <button id="calculate" class="calculate_button">Calculate</button>    
+        </div>
+        
+    <body>
+
+    <script src="negativebinomial.js"></script>
+    <script src="bignumber.js"></script>
+    <script src="helpers.js"></script>
+
+</html>
