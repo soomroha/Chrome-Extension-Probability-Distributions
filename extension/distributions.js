@@ -37,3 +37,14 @@ document.getElementById('uniform').onclick = function () {
 
     window.location.href="uniform.html";
 }
+
+document.getElementById('chi-square').onclick = function () {
+
+    window.location.href="chisquare.html";
+}
+
+document.getElementById('gamma').onclick = function () {
+
+    window.location.href="gamma.html";
+}
+

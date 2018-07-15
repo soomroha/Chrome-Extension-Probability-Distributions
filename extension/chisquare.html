@@ -3,20 +3,16 @@
 <html>
 
 	<head>
-		<title> Normal Distribution </title>
+		<title> Chi-square Distribution </title>
 		<link rel="stylesheet" type="text/css" href="binomial.css"> 
 	</head>	
 
 	<body>
-        <h4 align="center"> Normal Distribution </h4>
+        <h4 align="center"> Chi-square Distribution </h4>
 
         <div style="text-align: center;">
-            <label id="mean_label" class="parameters"></label>
-            <input id="mean_input" class="parameters" type="text" />
-        </div>
-        <div style="margin-top:20px;text-align: center;">
-            <label id = "sd_label" class="parameters"></label>
-            <input id="sd_input" class="parameters" type="text" />
+            <label id="degrees_label" class="parameters" style="width: fit-content">d.f. = </label>
+            <input id="degrees_input" class="parameters" type="text" />
         </div>
 
         <hr>
@@ -61,9 +57,8 @@
         
     <body>
 
-    <script src="normal.js"></script>
-    <script src="bignumber.js"></script>
-    <script src="helpers.js"></script>
+    <script src="chisquare.js"></script>
     <script src="decimal.js"></script>
+    <script src="helpers.js"></script>
 
 </html>
