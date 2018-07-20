@@ -39,20 +39,102 @@ document.getElementById('calculate').onclick = function () {
   var z_input = fetch_and_clean_data();
 
 
-  if (z_input[0] == -1){
-    alert("Please enter valid z values (0 <= Z <= 3.49)");
+  if (z_input[0] == "n/a"){
+    alert("Please enter valid z values (-3.49 <= Z <= 3.49)");
     return;
   }
   else{
 
-    var location = getProbability(z_input);
-    var row = location[0];
-    var column = location[1];
+  	if (z_input[0] != "not used"){
 
-    document.getElementById("leftProbability").innerHTML = probabilites[row][column].toString();
-    document.getElementById("rightProbability").innerHTML = (1-probabilites[row][column]).toFixed(4).toString();
+  		var isNeg = false;
 
+	  	if (z_input[0] < 0){
+	  		z_input[0] *= -1;
+	  		isNeg = true;
+	  	}
+
+	    var location = getProbability(z_input);
+	    var row = location[0];
+	    var column = location[1];
+
+	    if (isNeg){
+			document.getElementById("z_input_answer").innerHTML = (1-probabilites[row][column]).toFixed(4).toString();
+		    //document.getElementById("rightProbability").innerHTML = probabilites[row][column].toString();
+	    }
+	    else{
+	    	document.getElementById("z_input_answer").innerHTML = probabilites[row][column].toString();
+		    //document.getElementById("rightProbability").innerHTML = (1-probabilites[row][column]).toFixed(4).toString();
+	    }
+
+  	}    
   }
+
+	var leftValue = (document.getElementById("left_input").value);
+
+    if(isFloat(leftValue) && parseFloat(leftValue) >= -3.49 && parseFloat(leftValue) < 3.50){
+    	var lVal = [leftValue, 0];
+    }
+    else if(isInteger(leftValue) && parseInt(leftValue) >= -3 && parseInt(leftValue) <= 3){
+    	var lVal = [leftValue, 1];
+    }
+    else if(leftValue == ""){
+
+    }
+    else{
+    	alert("Please enter valid z values (-3.49 <= Z <= 3.49)");
+    	return;
+    }
+
+    var rightValue = (document.getElementById("right_input").value);
+
+	if(isFloat(rightValue) && parseFloat(rightValue) >= -3.49 && parseFloat(rightValue) < 3.50){
+		var rVal = [rightValue, 0];
+    }
+    else if(isInteger(rightValue) && parseInt(rightValue) >= -3 && parseInt(rightValue) <= 3){
+		var rVal = [rightValue, 1];
+    }
+    else if(rightValue == ""){
+
+    }
+    else{
+    	alert("Please enter valid z values (-3.49 <= Z <= 3.49)");
+    	return;
+    }
+
+    if (leftValue > rightValue){
+    	alert("Lower bound must be >= upper bound!");
+    	return;
+    }
+
+
+    var leftIsNeg = false;
+    var rightIsNeg = false;
+
+    if (leftValue < 0){
+    	leftIsNeg = true;
+    }
+    if (rightValue < 0){
+    	rightIsNeg = true;
+    }
+
+    var leftLocation = getProbability(lVal);
+    var rightLocation = getProbability(rVal);
+
+    var lrow = leftLocation[0];
+    var lcolumn = leftLocation[1];
+    var rrow = rightLocation[0];
+    var rcolumn = rightLocation[1];
+
+    if (leftIsNeg && rightIsNeg){
+		document.getElementById("double_bound_answer").innerHTML = ((1-probabilites[rrow][rcolumn]).toFixed(4) - (1-probabilites[lrow][lcolumn])).toFixed(4).toString();
+    }
+    else if (leftIsNeg){
+    	document.getElementById("double_bound_answer").innerHTML = ((1-probabilites[rrow][rcolumn]).toFixed(4) - (probabilites[lrow][lcolumn])).toFixed(4).toString();
+    }
+    else{
+		document.getElementById("double_bound_answer").innerHTML = ((probabilites[rrow][rcolumn]).toFixed(4) - (probabilites[lrow][lcolumn])).toFixed(4).toString();
+    }
 
 }
 
@@ -90,14 +172,18 @@ function fetch_and_clean_data(){
 
       var value = (document.getElementById("z_input").value);
 
-      if(isFloat(value) && parseFloat(value) >= 0.0 && parseFloat(value) < 3.50){
+      if(isFloat(value) && parseFloat(value) >= -3.49 && parseFloat(value) < 3.50){
         return [value, 0];
       }
-      else if(isInteger(value) && parseInt(value) >= 0 && parseInt(value) <= 3){
+      else if(isInteger(value) && parseInt(value) >= -3 && parseInt(value) <= 3){
         return [value, 1];
       }
 
-      return [-1];
+      if (value == ""){
+      	return ["not used"];
+      }
+
+      return ["n/a"];
 }
 
 

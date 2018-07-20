@@ -10,26 +10,23 @@
 	<body>
 		<h3 align="center"> Z-Table Lookup </h3>
 
-		<div style="text-align: center;">
-            <label class="z_value">Z = </label>
-            <input id="z_input" class="bounds" type="text" />
+
+        <div style="margin-top:20px; text-align: center;">
+            <label style="width:40px;">Z <= </label>
+            <input id="z_input" type="text" class="bounds"/>
+            <label id="z_input_answer"> </label>
         </div>
 
         <div style="margin-top:20px; text-align: center;">
             <label style="width:20px;"></label>
-            <input id="double_bound_left_input" type="text" class="bounds"/>
+            <input id="left_input" type="text" class="bounds"/>
             <label style="width:50px;"> <= Z <= </label>
-            <input id="double_bound_right_input" type="text" class="bounds"/>
+            <input id="right_input" type="text" class="bounds"/>
             <label style="width:25px;"></label>
-            <label id="double_bound_left_input_answer"></label>
+            <label id="double_bound_answer"></label>
         </div>
 
         <hr>
-
-		<div style="text-align: center;">
-        	<label style="width:25px;">Probability = </label>
-        	<label id="rightProbability"></label>
-        </div>
 
         <div class="bottom_button">
             <button id="calculate" class="calculate_button">Calculate</button>    
