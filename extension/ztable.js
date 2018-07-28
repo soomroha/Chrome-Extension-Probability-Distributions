@@ -88,11 +88,11 @@ document.getElementById('calculate').onclick = function () {
 
     var rightValue = (document.getElementById("right_input").value);
 
-	if(isFloat(rightValue) && parseFloat(rightValue) >= -3.49 && parseFloat(rightValue) < 3.50){
-		var rVal = [rightValue, 0];
+	  if(isFloat(rightValue) && parseFloat(rightValue) >= -3.49 && parseFloat(rightValue) < 3.50){
+		  var rVal = [rightValue, 0];
     }
     else if(isInteger(rightValue) && parseInt(rightValue) >= -3 && parseInt(rightValue) <= 3){
-		var rVal = [rightValue, 1];
+		  var rVal = [rightValue, 1];
     }
     else if(rightValue == ""){
 
@@ -113,9 +113,11 @@ document.getElementById('calculate').onclick = function () {
 
     if (leftValue < 0){
     	leftIsNeg = true;
+      lVal[0] *= -1;
     }
     if (rightValue < 0){
     	rightIsNeg = true;
+      rVal[0] *= -1;
     }
 
     var leftLocation = getProbability(lVal);
@@ -126,14 +128,23 @@ document.getElementById('calculate').onclick = function () {
     var rrow = rightLocation[0];
     var rcolumn = rightLocation[1];
 
+
     if (leftIsNeg && rightIsNeg){
-		document.getElementById("double_bound_answer").innerHTML = ((1-probabilites[rrow][rcolumn]).toFixed(4) - (1-probabilites[lrow][lcolumn])).toFixed(4).toString();
+      var probability = ((1-probabilites[rrow][rcolumn]).toFixed(4) - (1-probabilites[lrow][lcolumn])).toFixed(4);
+      if (probability < 0){
+        probability *= -1;
+      }
+		  document.getElementById("double_bound_answer").innerHTML = probability.toString();
     }
     else if (leftIsNeg){
-    	document.getElementById("double_bound_answer").innerHTML = ((1-probabilites[rrow][rcolumn]).toFixed(4) - (probabilites[lrow][lcolumn])).toFixed(4).toString();
+      var probability = ((1-probabilites[rrow][rcolumn]).toFixed(4) - (probabilites[lrow][lcolumn])).toFixed(4);
+      if (probability < 0){
+        probability *= -1;
+      }
+    	document.getElementById("double_bound_answer").innerHTML = probability.toString();
     }
     else{
-		document.getElementById("double_bound_answer").innerHTML = ((probabilites[rrow][rcolumn]).toFixed(4) - (probabilites[lrow][lcolumn])).toFixed(4).toString();
+		  document.getElementById("double_bound_answer").innerHTML = ((probabilites[rrow][rcolumn]).toFixed(4) - (probabilites[lrow][lcolumn])).toFixed(4).toString();
     }
 
 }
@@ -153,7 +164,7 @@ function getProbability(z_input){
   else{
     value = z_input[0];
 
-    if (value.length == 3){
+    if (value.toString().length == 3){
       column = 0;
       row = parseInt(value.toString()[0] + value.toString()[2]);
     }
