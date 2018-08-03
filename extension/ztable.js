@@ -71,7 +71,7 @@ document.getElementById('calculate').onclick = function () {
 	var leftValue = (document.getElementById("left_input").value);
 	var rightValue = (document.getElementById("right_input").value);
 
-	if (leftValue > rightValue){
+	if (parseFloat(leftValue) > parseFloat(rightValue)){
 
     	alert("Lower bound must be <= upper bound!");
     	return;
