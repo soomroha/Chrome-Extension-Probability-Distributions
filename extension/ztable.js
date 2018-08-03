@@ -71,6 +71,14 @@ document.getElementById('calculate').onclick = function () {
   }
 
 	var leftValue = (document.getElementById("left_input").value);
+	var rightValue = (document.getElementById("right_input").value);
+
+	if (leftValue > rightValue){
+		
+    	alert("Lower bound must be <= upper bound!");
+    	return;
+    }
+
 
     if(isFloat(leftValue) && parseFloat(leftValue) >= -3.49 && parseFloat(leftValue) < 3.50){
     	var lVal = [leftValue, 0];
@@ -86,9 +94,8 @@ document.getElementById('calculate').onclick = function () {
     	return;
     }
 
-    var rightValue = (document.getElementById("right_input").value);
 
-	  if(isFloat(rightValue) && parseFloat(rightValue) >= -3.49 && parseFloat(rightValue) < 3.50){
+	if(isFloat(rightValue) && parseFloat(rightValue) >= -3.49 && parseFloat(rightValue) < 3.50){
 		  var rVal = [rightValue, 0];
     }
     else if(isInteger(rightValue) && parseInt(rightValue) >= -3 && parseInt(rightValue) <= 3){
@@ -101,12 +108,6 @@ document.getElementById('calculate').onclick = function () {
     	alert("Please enter valid z values (-3.49 <= Z <= 3.49)");
     	return;
     }
-
-    if (leftValue > rightValue){
-    	alert("Lower bound must be >= upper bound!");
-    	return;
-    }
-
 
     var leftIsNeg = false;
     var rightIsNeg = false;
@@ -184,10 +185,10 @@ function fetch_and_clean_data(){
       var value = (document.getElementById("z_input").value);
 
       if(isFloat(value) && parseFloat(value) >= -3.49 && parseFloat(value) < 3.50){
-        return [value, 0];
+        return [value.toFixed(2), 0];
       }
       else if(isInteger(value) && parseInt(value) >= -3 && parseInt(value) <= 3){
-        return [value, 1];
+        return [value.toFixed(2), 1];
       }
 
       if (value == ""){
