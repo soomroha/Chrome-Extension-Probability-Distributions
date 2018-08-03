@@ -60,11 +60,9 @@ document.getElementById('calculate').onclick = function () {
 
 	    if (isNeg){
 			document.getElementById("z_input_answer").innerHTML = (1-probabilites[row][column]).toFixed(4).toString();
-		    //document.getElementById("rightProbability").innerHTML = probabilites[row][column].toString();
 	    }
 	    else{
 	    	document.getElementById("z_input_answer").innerHTML = probabilites[row][column].toString();
-		    //document.getElementById("rightProbability").innerHTML = (1-probabilites[row][column]).toFixed(4).toString();
 	    }
 
   	}    
@@ -74,7 +72,7 @@ document.getElementById('calculate').onclick = function () {
 	var rightValue = (document.getElementById("right_input").value);
 
 	if (leftValue > rightValue){
-		
+
     	alert("Lower bound must be <= upper bound!");
     	return;
     }
@@ -185,10 +183,10 @@ function fetch_and_clean_data(){
       var value = (document.getElementById("z_input").value);
 
       if(isFloat(value) && parseFloat(value) >= -3.49 && parseFloat(value) < 3.50){
-        return [value.toFixed(2), 0];
+        return [parseFloat(value.toFixed(2)), 0];
       }
       else if(isInteger(value) && parseInt(value) >= -3 && parseInt(value) <= 3){
-        return [value.toFixed(2), 1];
+        return [parseFloat(value).toFixed(2), 1];
       }
 
       if (value == ""){
