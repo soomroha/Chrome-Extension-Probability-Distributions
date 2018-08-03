@@ -183,10 +183,10 @@ function fetch_and_clean_data(){
       var value = (document.getElementById("z_input").value);
 
       if(isFloat(value) && parseFloat(value) >= -3.49 && parseFloat(value) < 3.50){
-        return [parseFloat(value.toFixed(2)), 0];
+        return [parseFloat(parseFloat(value).toFixed(2)), 0];
       }
       else if(isInteger(value) && parseInt(value) >= -3 && parseInt(value) <= 3){
-        return [parseFloat(value).toFixed(2), 1];
+        return [parseFloat(parseFloat(value).toFixed(2)), 1];
       }
 
       if (value == ""){
